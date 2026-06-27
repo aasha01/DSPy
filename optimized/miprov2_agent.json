@@ -1,0 +1,94 @@
+{
+  "classify": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Classify the customer support message into a single known intent.",
+      "fields": [
+        {
+          "prefix": "User Message:",
+          "description": "Raw message from the customer"
+        },
+        {
+          "prefix": "Intent:",
+          "description": "Exactly one of: track_order, cancel_order, refund_request, escalate, general_query"
+        },
+        {
+          "prefix": "Confidence:",
+          "description": "Confidence score between 0.0 and 1.0"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "extract": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Extract structured entities from the customer message.",
+      "fields": [
+        {
+          "prefix": "User Message:",
+          "description": "Raw message from the customer"
+        },
+        {
+          "prefix": "Order Id:",
+          "description": "Order ID if mentioned (e.g. #12345), else empty string"
+        },
+        {
+          "prefix": "Customer Email:",
+          "description": "Customer email if mentioned, else empty string"
+        },
+        {
+          "prefix": "Issue Summary:",
+          "description": "One sentence summary of the customer's issue"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "respond.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Generate a helpful, polite, and concise customer care response.",
+      "fields": [
+        {
+          "prefix": "User Message:",
+          "description": "Raw message from the customer"
+        },
+        {
+          "prefix": "Intent:",
+          "description": "Classified intent of the message"
+        },
+        {
+          "prefix": "Entities:",
+          "description": "JSON string with keys: order_id, email, issue_summary"
+        },
+        {
+          "prefix": "Policy Context:",
+          "description": "Relevant policy snippets to ground the response. Can be empty string."
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Response:",
+          "description": "Final response to send to the customer — polite, clear, under 100 words"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.2.1",
+      "cloudpickle": "3.1"
+    }
+  }
+}
